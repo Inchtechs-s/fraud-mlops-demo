@@ -52,8 +52,7 @@
 
 ## 1. Data Ingestion
 
-
-### A. Config
+### Config
 
 You can change the config in `config/config.yml`:
 
@@ -68,19 +67,7 @@ paths:
   data: data/data.pkl
 ```
 
-### Steps
-
-#### a. Create required folders
-
-From the project root, create the Mosquitto data and log directories:
-
-```bash
-mkdir -p src/data-ingestion/mosquitto/data
-mkdir -p src/data-ingestion/mosquitto/log
-```
----
-
-#### b. Publisher
+#### Publisher
 
 The publisher reads a fraud detection dataset from a `.pkl` file, and sends one transaction sample to the MQTT broker every 30 seconds.
 
@@ -100,9 +87,24 @@ Each message is a JSON-serialized transaction with a generated UUID:
   "transactionID": "e03e0b58-a31b-44fb-9658-482f1a38c6dd"
 }
 ```
+#### Subscriber
+
+
+### How to run
+
+#### a. Create required folders
+
+From the project root, create the Mosquitto data and log directories:
+
+```bash
+mkdir -p src/data-ingestion/mosquitto/data
+mkdir -p src/data-ingestion/mosquitto/log
+```
+---
+
 Samples are sent every **30 seconds**.
 
-#### C. Run
+#### b. Run
 
 A convenience script handles everything — it starts the Mosquitto broker, then launches the publisher and subscriber automatically.
 
