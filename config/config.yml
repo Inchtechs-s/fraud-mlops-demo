@@ -6,3 +6,4 @@ broker:
 
 paths:
   data: data/data.pkl
+  db: data/transactions.db

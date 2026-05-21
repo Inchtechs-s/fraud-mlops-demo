@@ -18,7 +18,7 @@ df = df.drop(columns=["step", "isFraud", "isFlaggedFraud"])
 print(f"Loaded {len(df)} rows from {DATA}")
 
 # --- MQTT Client ---
-client = mqtt.Client()
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.connect(BROKER, PORT)
 client.loop_start()
 

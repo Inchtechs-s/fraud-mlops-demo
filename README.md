@@ -89,6 +89,11 @@ Each message is a JSON-serialized transaction with a generated UUID:
 ```
 #### Subscriber
 
+The subscriber connects to the MQTT broker and listens for incoming transactions.
+When the connection is established, `on_connect` automatically subscribes to the
+`fraud/transactions` topic. Each time a new message arrives, `on_message` decodes it,
+cleans and enriches the data (`transform`), checks that all required fields are present
+and valid (`validate`), then saves it to the SQLite database.
 
 ### How to run
 

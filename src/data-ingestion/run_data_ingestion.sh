@@ -23,6 +23,14 @@ else
   exit 1
 fi
 
+# --- Run subscriber in background ---
+echo "Starting subscriber..."
+python -m src.data-ingestion.sub & SUB_PID=$!
+echo "Subscriber running (PID: $SUB_PID)"
+
+sleep 2  # Give subscriber time to connect before publisher starts
+
+
 # --- Run publisher ---
 echo "Starting publisher..."
 python -m src.data-ingestion.pub
