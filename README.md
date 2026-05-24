@@ -11,7 +11,8 @@
 │   ├── data.pkl
 │   ├── dataset.csv
 │   ├── preprocessed
-│   └── ReadMe.txt
+│   ├── ReadMe.txt
+│   └── transactions.db
 ├── README.md
 ├── requirements
 │   └── base.txt
@@ -26,7 +27,9 @@
 │   │   │   └── log
 │   │   ├── pub.py
 │   │   ├── ReadMe.txt
-│   │   └── run_data_ingestion.sh
+│   │   ├── run_data_ingestion.sh
+│   │   ├── sub.py
+│   │   └── utils.py
 │   ├── monitoring
 │   │   └── readme.txt
 │   ├── notebooks
@@ -37,7 +40,6 @@
 │       └── readme.txt
 └── test
     └── readme.txt
-
 ```
 ## 0. Requirements
 
@@ -65,6 +67,7 @@ broker:
 
 paths:
   data: data/data.pkl
+    db: data/transactions.db
 ```
 
 #### Publisher

@@ -1,25 +1,26 @@
 0. requirements 
     - docker
     - python env 
+    - config/config.yml
+        * topic
+        * 
 
-1. Run mosquitto service
+1. Mosquitto service
     - pull image 
-        docker pull eclipse-mosquitto:openssl
+        docker pull eclipse-mosquitto
     - create required folders
-    - edit the config file 
     - run the service : 
         $ docker run -d -p 1883:1883 -v "$PWD/src/data-ingestion/mosquitto/log:/mosquitto/log" -v "$PWD/src/data-ingestion/mosquitto/data:/mosquitto/data" eclipse-mosquitto
 
+2. Publisher
+    - simulate transactions
+    - send data in the topic
 
-2. Run publisher
-    - read data
-    - create a topic 
-    - send data
-
-3. Run consummer
+3. Subscriber
     - listen to the topic
-    - simple ETL
-    - store into sqlite 
+    - simple ETL (Casting data, add new column and validate data )
+    - insert into a sqlite database
 
 Resources :
 - https://hub.docker.com/_/eclipse-mosquitto/
+- https://pypi.org/project/paho-mqtt/
