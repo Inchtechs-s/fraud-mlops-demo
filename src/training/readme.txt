@@ -8,4 +8,4 @@
 
 
 mlflow command : 
-mlflow server  --backend-store-uri sqlite:///../../data/mlflow/fraud_detection.db
+mlflow server  --backend-store-uri sqlite:///data/mlflow/fraud_detection.db
