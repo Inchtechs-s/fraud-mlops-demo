@@ -10,12 +10,99 @@
 ├── data
 │   ├── data.pkl
 │   ├── dataset.csv
+│   ├── mlflow
+│   │   ├── artifacts
+│   │   │   ├── 221c0bc9f65d4316a8777104f27bd763
+│   │   │   │   └── artifacts
+│   │   │   │       └── confusion_matrix_xgboost_pipe.png
+│   │   │   ├── 2f7adef3c5684eacb94eb91f43ae46bb
+│   │   │   │   └── artifacts
+│   │   │   │       └── confusion_matrix_fraud_detector.png
+│   │   │   ├── 337ff14236e548b0bc6a16ba2f0547bd
+│   │   │   │   └── artifacts
+│   │   │   │       └── confusion_matrix_fraud_detector.png
+│   │   │   ├── 396fcd0f706e488b9d8af3ec9e04e212
+│   │   │   │   └── artifacts
+│   │   │   │       └── confusion_matrix_random_forest_pipe.png
+│   │   │   ├── 81f24debf81d44f0acdcdce031ee4b15
+│   │   │   │   └── artifacts
+│   │   │   │       └── confusion_matrix_fraud_detector.png
+│   │   │   ├── aaad151cf7b54d2eb820f13af2d52c92
+│   │   │   │   └── artifacts
+│   │   │   │       └── confusion_matrix_fraud_detector.png
+│   │   │   ├── e88fc2ff500a47f9a0013dcd0a43b7b2
+│   │   │   │   └── artifacts
+│   │   │   │       └── confusion_matrix_fraud_detector.png
+│   │   │   ├── fa713bf7d1354b598049426774439b0d
+│   │   │   │   └── artifacts
+│   │   │   │       └── confusion_matrix_fraud_detector.png
+│   │   │   └── models
+│   │   │       ├── m-077da87703e2447a9356a43b8fe22680
+│   │   │       │   └── artifacts
+│   │   │       │       ├── conda.yaml
+│   │   │       │       ├── MLmodel
+│   │   │       │       ├── model.pkl
+│   │   │       │       ├── python_env.yaml
+│   │   │       │       └── requirements.txt
+│   │   │       ├── m-0cba9e9407a54e3b9f35cdd096df1b80
+│   │   │       │   └── artifacts
+│   │   │       │       ├── conda.yaml
+│   │   │       │       ├── MLmodel
+│   │   │       │       ├── model.pkl
+│   │   │       │       ├── python_env.yaml
+│   │   │       │       └── requirements.txt
+│   │   │       ├── m-15a7b3395f7a42ceb34ca712a9cb6880
+│   │   │       │   └── artifacts
+│   │   │       │       ├── conda.yaml
+│   │   │       │       ├── MLmodel
+│   │   │       │       ├── model.pkl
+│   │   │       │       ├── python_env.yaml
+│   │   │       │       └── requirements.txt
+│   │   │       ├── m-472a563d814248f9bb4fccc2d87b08a5
+│   │   │       │   └── artifacts
+│   │   │       │       ├── conda.yaml
+│   │   │       │       ├── MLmodel
+│   │   │       │       ├── model.pkl
+│   │   │       │       ├── python_env.yaml
+│   │   │       │       └── requirements.txt
+│   │   │       ├── m-5c2917d979e241d8bba264362f659e2e
+│   │   │       │   └── artifacts
+│   │   │       │       ├── conda.yaml
+│   │   │       │       ├── MLmodel
+│   │   │       │       ├── model.pkl
+│   │   │       │       ├── python_env.yaml
+│   │   │       │       └── requirements.txt
+│   │   │       ├── m-b97c9ec30c6e414f87d786ad652fd2bd
+│   │   │       │   └── artifacts
+│   │   │       │       ├── conda.yaml
+│   │   │       │       ├── MLmodel
+│   │   │       │       ├── model.pkl
+│   │   │       │       ├── python_env.yaml
+│   │   │       │       └── requirements.txt
+│   │   │       ├── m-baaa8cda2c3a4e1ba4a73efe1b73b5f7
+│   │   │       │   └── artifacts
+│   │   │       │       ├── conda.yaml
+│   │   │       │       ├── MLmodel
+│   │   │       │       ├── model.pkl
+│   │   │       │       ├── python_env.yaml
+│   │   │       │       └── requirements.txt
+│   │   │       └── m-be2ac318c93b472b84c56c8fd1af888d
+│   │   │           └── artifacts
+│   │   │               ├── conda.yaml
+│   │   │               ├── MLmodel
+│   │   │               ├── model.pkl
+│   │   │               ├── python_env.yaml
+│   │   │               └── requirements.txt
+│   │   └── fraud_detection.db
 │   ├── preprocessed
 │   ├── ReadMe.txt
 │   └── transactions.db
+├── docker-compose.yml
+├── Dockerfile
 ├── README.md
 ├── requirements
-│   └── base.txt
+│   ├── base.txt
+│   └── mqtt.txt
 ├── src
 │   ├── dashboard
 │   │   └── readme.txt
@@ -33,7 +120,8 @@
 │   ├── monitoring
 │   │   └── readme.txt
 │   ├── notebooks
-│   │   └── create_subset_data.ipynb
+│   │   ├── create_subset_data.ipynb
+│   │   └── fraud_detection_model.ipynb
 │   ├── serving
 │   │   └── readme.txt
 │   └── training
@@ -52,6 +140,9 @@
 
 ---
 
+## Overview 
+
+![alt text](data/img/image.png)
 ## 1. Data Ingestion
 
 ### Config
