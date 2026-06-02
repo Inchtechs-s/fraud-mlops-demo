@@ -31,3 +31,4 @@ with open(CONFIG_PATH, "r") as f:
 
 
 CONFIG["paths"] = resolve_paths(CONFIG["paths"])
+

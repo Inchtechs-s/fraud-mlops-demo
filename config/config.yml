@@ -7,3 +7,7 @@ broker:
 paths:
   data: data/data.pkl
   db: data/transactions.db
+
+database:
+  transactions_table: transactions
+  predictions_table: predictions
