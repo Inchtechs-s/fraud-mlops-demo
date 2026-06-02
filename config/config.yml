@@ -7,7 +7,26 @@ broker:
 paths:
   data: data/data.pkl
   db: data/transactions.db
+  mlflow_artifacts: data/mlflow/artifacts
+  mlflow_db: data/mlflow/fraud_detection.db
 
 database:
   transactions_table: transactions
   predictions_table: predictions
+
+mlflow:
+  uri: http://127.0.0.1:5000/
+  model_name: fraud_detector
+  experiment_name: fraud_detection
+
+train:
+  random_state: 42
+
+
+
+# EXP_NAME = "fraud_detection"
+# MODEL_NAME = "fraud_detector"
+# MLFLOW_URI = "http://127.0.0.1:5000/"
+# MLFLOW_DB = "sqlite:///../../data/mlflow/fraud_detection.db"
+# ARTIFACT_PATH = f"file://{os.path.abspath('../../data/mlflow/artifacts')}"
+# RANDOM_STATE = 42
