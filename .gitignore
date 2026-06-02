@@ -87,3 +87,11 @@ pip-wheel-metadata/
 .pyre/
 .profile
 .ipynb_checkpoints
+
+
+data/mlflow/
+artifacts/
+models/
+reports/
+
+*.db

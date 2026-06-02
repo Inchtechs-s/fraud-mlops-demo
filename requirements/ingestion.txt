@@ -1,4 +1,6 @@
-pandas
-paho-mqtt
-PyYAML
-python-dateutil
+numpy==2.4.6
+paho-mqtt==2.1.0
+pandas==3.0.3
+python-dateutil==2.9.0.post0
+PyYAML==6.0.3
+six==1.17.0

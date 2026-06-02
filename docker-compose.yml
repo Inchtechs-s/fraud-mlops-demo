@@ -1,0 +1,28 @@
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:latest
+    container_name: fraud_mqtt_broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./src/data_ingestion/mosquitto/data:/mosquitto/data
+      - ./src/data_ingestion/mosquitto/log:/mosquitto/log
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v3.10.0
+    container_name: fraud_mlflow
+    ports:
+      - "5123:5000"
+    volumes:
+      - ./data/mlflow:/mlflow
+    command:
+      - mlflow
+      - server
+      - --host
+      - 0.0.0.0
+      - --port
+      - "5000"
+      - --backend-store-uri
+      - sqlite:////mlflow/fraud_detection.db
+      - --default-artifact-root
+      - /mlflow/artifacts
