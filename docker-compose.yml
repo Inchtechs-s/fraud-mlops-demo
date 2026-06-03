@@ -26,3 +26,17 @@ services:
       - sqlite:////mlflow/fraud_detection.db
       - --default-artifact-root
       - /mlflow/artifacts
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: fraud_grafana
+    ports:
+      - "3123:3000"
+    environment:
+      GF_INSTALL_PLUGINS: frser-sqlite-datasource
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./data:/project-data:ro
+
+volumes:
+  grafana-data:
