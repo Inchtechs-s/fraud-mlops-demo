@@ -12,7 +12,7 @@ from sklearn.preprocessing import OneHotEncoder
 from xgboost import XGBClassifier
 
 from config.config import CONFIG
-from training.registry import register_best_model
+from .registry import register_best_model
 from .preprocess import load_data, wrangle
 
 

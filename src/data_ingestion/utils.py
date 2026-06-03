@@ -6,6 +6,8 @@ from datetime import datetime
 
 # --- Config ---
 DB_PATH = CONFIG["paths"]["db"]
+TRANSACTIONS_TABLE = CONFIG["database"]["transactions_table"]
+PREDICTIONS_TABLE = CONFIG["database"]["predictions_table"]
 
 # -----------------------------------------------------------
 # DATABASE
@@ -18,8 +20,8 @@ def init_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS transactions (
+    cursor.execute(f"""
+        CREATE TABLE IF NOT EXISTS {TRANSACTIONS_TABLE} (
             transactionID   TEXT PRIMARY KEY,
             type            TEXT,
             amount          REAL,
@@ -39,10 +41,43 @@ def init_db():
     conn.commit()
 
     if exists:
-        count = cursor.execute("SELECT COUNT(*) FROM transactions").fetchone()[0]
+        count = cursor.execute(f"SELECT COUNT(*) FROM {TRANSACTIONS_TABLE}").fetchone()[0]
         print(f"[DB] '{DB_PATH}' already exists — appending ({count} existing rows)")
     else:
         print(f"[DB] '{DB_PATH}' not found — created new database")
+
+    return conn
+
+def init_db_transactions():
+    return init_db() 
+
+def init_db_predictions():
+    """Create predictions table if it does not exist, append otherwise."""
+    exists = os.path.exists(DB_PATH)
+
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    cursor.execute(f"""
+        CREATE TABLE IF NOT EXISTS {PREDICTIONS_TABLE} (
+            id                INTEGER PRIMARY KEY AUTOINCREMENT,
+            transactionID     TEXT NOT NULL,
+            model_name        TEXT NOT NULL,
+            model_version     TEXT NOT NULL,
+            prediction        INTEGER NOT NULL,
+            fraud_probability REAL,
+            risk_level        TEXT,
+            predicted_at      TEXT DEFAULT (datetime('now')),
+            FOREIGN KEY (transactionID) REFERENCES {TRANSACTIONS_TABLE}(transactionID)
+        )
+    """)
+    conn.commit()
+
+    if exists:
+        count = cursor.execute(f"SELECT COUNT(*) FROM {PREDICTIONS_TABLE}").fetchone()[0]
+        print(f"[DB] predictions table ready — appending ({count} existing rows)")
+    else:
+        print(f"[DB] '{DB_PATH}' not found — created new database with predictions table")
 
     return conn
 
@@ -110,8 +145,8 @@ def insert(conn: sqlite3.Connection, payload: dict):
     cursor = conn.cursor()
 
     try:
-        cursor.execute("""
-            INSERT INTO transactions (
+        cursor.execute(f"""
+            INSERT INTO {TRANSACTIONS_TABLE} (
                 transactionID, type,
                 amount, nameOrig, oldbalanceOrg, newbalanceOrig, diffOrg,
                 nameDest, oldbalanceDest, newbalanceDest, diffDest,
@@ -132,4 +167,40 @@ def insert(conn: sqlite3.Connection, payload: dict):
 
     except Exception as e:
         print(f"[INSERT] Error: {e}")
+
+
+def insert_prediction(conn: sqlite3.Connection, payload: dict):
+    """Insert a model prediction row into SQLite."""
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute(f"""
+            INSERT INTO {PREDICTIONS_TABLE} (
+                transactionID,
+                model_name,
+                model_version,
+                prediction,
+                fraud_probability,
+                risk_level
+            ) VALUES (
+                :transactionID,
+                :model_name,
+                :model_version,
+                :prediction,
+                :fraud_probability,
+                :risk_level
+            )
+        """, payload)
+
+        conn.commit()
+        print(f"[INSERT] Saved prediction for transaction {payload['transactionID']}")
+
+    except sqlite3.IntegrityError as e:
+        print(f"[INSERT] Prediction integrity error for {payload.get('transactionID')}: {e}")
+
+    except Exception as e:
+        print(f"[INSERT] Prediction error: {e}")
+
+def insert_transactions(conn: sqlite3.Connection, payload: dict):
+    return insert(conn, payload)
 
