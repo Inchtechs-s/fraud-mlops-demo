@@ -1,0 +1,12 @@
+pandas
+PyYAML
+paho-mqtt
+fastapi
+uvicorn
+fastapi-mqtt
+mlflow
+scikit-learn
+xgboost
+matplotlib
+evidently
+prefect

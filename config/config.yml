@@ -7,3 +7,20 @@ broker:
 paths:
   data: data/data.pkl
   db: data/transactions.db
+  mlflow_artifacts: data/mlflow/artifacts
+  mlflow_db: data/mlflow/fraud_detection.db
+
+database:
+  transactions_table: transactions
+  predictions_table: predictions
+
+mlflow:
+  uri: http://127.0.0.1:5123/
+  model_name: fraud_detector
+  experiment_name: fraud_detection
+
+train:
+  random_state: 42
+  min_f1_score: 0.90
+
+

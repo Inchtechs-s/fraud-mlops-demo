@@ -31,3 +31,22 @@ with open(CONFIG_PATH, "r") as f:
 
 
 CONFIG["paths"] = resolve_paths(CONFIG["paths"])
+
+
+def apply_env_overrides(config):
+    """Allow Docker services to override local config values."""
+    broker_host = os.getenv("FRAUD_BROKER_HOST")
+    broker_port = os.getenv("FRAUD_BROKER_PORT")
+    mlflow_uri = os.getenv("FRAUD_MLFLOW_URI")
+
+    if broker_host:
+        config["broker"]["host"] = broker_host
+
+    if broker_port:
+        config["broker"]["port"] = int(broker_port)
+
+    if mlflow_uri:
+        config["mlflow"]["uri"] = mlflow_uri
+
+
+apply_env_overrides(CONFIG)

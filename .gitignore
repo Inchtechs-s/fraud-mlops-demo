@@ -1,0 +1,98 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+.installed.cfg
+
+# Virtual environments
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Environment variables and secrets
+.env
+*.env
+*.dotenv
+
+# Logs
+*.log
+logs/
+log/
+
+# Docker
+docker-compose.override.yml
+
+# Database files
+*.sqlite3
+*.db
+*.db-journal
+
+# Data files generated during experiments
+*.parquet
+*.h5
+*.pkl
+
+# Misc
+*.swp
+*~
+
+# Python package metadata
+pip-wheel-metadata/
+*.dist-info/
+
+# Local build artifacts
+.pyre/
+.profile
+.ipynb_checkpoints
+
+
+data/mlflow/
+artifacts/
+models/
+reports/
+
+*.db
+drift_report.html
