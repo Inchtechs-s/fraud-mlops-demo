@@ -4,7 +4,7 @@ import mlflow.sklearn
 from config.config import CONFIG
 
 
-TRACKING_URI = f"sqlite:///{CONFIG['paths']['mlflow_db']}"
+TRACKING_URI = CONFIG["mlflow"]["uri"]
 MODEL_NAME = CONFIG["mlflow"]["model_name"]
 
 

@@ -38,5 +38,75 @@ services:
       - grafana-data:/var/lib/grafana
       - ./data:/project-data:ro
 
+  serving-api:
+    build: .
+    container_name: fraud_serving_api
+    depends_on:
+      - mqtt-broker
+      - mlflow
+    ports:
+      - "8000:8000"
+    environment:
+      FRAUD_BROKER_HOST: mqtt-broker
+      FRAUD_BROKER_PORT: "1883"
+      FRAUD_MLFLOW_URI: http://mlflow:5000
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+    command:
+      - uvicorn
+      - src.serving.app:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+
+  training:
+    build: .
+    container_name: fraud_training
+    profiles:
+      - jobs
+    depends_on:
+      - mlflow
+    environment:
+      FRAUD_MLFLOW_URI: http://mlflow:5000
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+    command:
+      - python
+      - -m
+      - src.training.train
+
+  monitoring:
+    build: .
+    container_name: fraud_monitoring
+    profiles:
+      - jobs
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+    command:
+      - python
+      - -m
+      - src.monitoring.drift
+
+  orchestration:
+    build: .
+    container_name: fraud_orchestration
+    profiles:
+      - jobs
+    depends_on:
+      - mlflow
+    environment:
+      FRAUD_MLFLOW_URI: http://mlflow:5000
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+    command:
+      - python
+      - -m
+      - src.orchestration.flows
+
 volumes:
   grafana-data:

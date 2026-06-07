@@ -1,5 +1,3 @@
-import os
-
 import matplotlib.pyplot as plt
 import mlflow
 import mlflow.sklearn
@@ -16,20 +14,19 @@ from .registry import register_best_model
 from .preprocess import load_data, wrangle
 
 
-MLFLOW_DB = f"sqlite:///{CONFIG['paths']['mlflow_db']}"
+MLFLOW_TRACKING_URI = CONFIG["mlflow"]["uri"]
 EXP_NAME = CONFIG["mlflow"]["experiment_name"]
-ARTIFACT_PATH = f"file://{CONFIG['paths']['mlflow_artifacts']}"
 MODEL_NAME = CONFIG["mlflow"]["model_name"]
 RANDOM_STATE = CONFIG["train"]["random_state"]
 
 
-def get_or_create_experiment(exp_name, artifact_location):
+def get_or_create_experiment(exp_name):
     """Get an existing MLflow experiment or create it if it does not exist."""
     experiment = mlflow.get_experiment_by_name(exp_name)
     if experiment is not None:
         return experiment
 
-    experiment_id = mlflow.create_experiment(name=exp_name, artifact_location=artifact_location)
+    experiment_id = mlflow.create_experiment(name=exp_name)
     return mlflow.get_experiment(experiment_id)
 
 
@@ -144,12 +141,8 @@ def run_models(X_train, X_test, y_train, y_test):
 
 
 def main():
-    #create if not exists.
-    os.makedirs(os.path.dirname(CONFIG["paths"]["mlflow_db"]), exist_ok=True)
-    os.makedirs(CONFIG["paths"]["mlflow_artifacts"], exist_ok=True)
-
-    mlflow.set_tracking_uri(MLFLOW_DB)
-    experiment = get_or_create_experiment(EXP_NAME, ARTIFACT_PATH)
+    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+    experiment = get_or_create_experiment(EXP_NAME)
     mlflow.set_experiment(experiment.name)
 
     wrangled_df = wrangle(load_data())
