@@ -95,3 +95,4 @@ models/
 reports/
 
 *.db
+drift_report.html
