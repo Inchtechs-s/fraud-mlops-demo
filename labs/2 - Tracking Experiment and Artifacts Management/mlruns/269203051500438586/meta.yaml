@@ -1,7 +1,0 @@
-artifact_location: file:///Users/serge-nd/IdeaProjects/DSA/labs/2%20-%20Tracking%20Experiment%20and%20Artifacts%20Management/mlruns/269203051500438586
-creation_time: 1780433843149
-experiment_id: '269203051500438586'
-last_update_time: 1780433843149
-lifecycle_stage: active
-name: fraud_detection
-workspace: default
