@@ -34,7 +34,7 @@ for i, (_, row) in enumerate(df.iterrows()):
     message = json.dumps(payload)
     result = client.publish(TOPIC, message)
 
-    print(f"[{i+1}/{len(df)}] Published transaction ID {payload.get('TransactionID', i)}: {result}")
+    print(f"[{i+1}/{len(df)}] Published transaction ID {payload.get('transactionID', i)}: {result}")
 
     time.sleep(INTERVAL)
 
