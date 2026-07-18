@@ -9,6 +9,7 @@ def load_data():
     df = pd.read_pickle(DATAPATH)
     return df
 
+# clean, transform, and organize raw data 
 def wrangle(df):
     df = df.copy()
 
