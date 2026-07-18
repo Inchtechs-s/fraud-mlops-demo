@@ -29,7 +29,6 @@ Run:
 docker compose up -d mqtt-broker mlflow grafana
 ```
 
-Show:
 
 ```bash
 docker compose ps
@@ -120,13 +119,11 @@ confusion matrix artifact
 registered model
 ```
 
-Say:
 
-```text
 MLflow keeps track of what we trained, how it performed, and which model version we can serve.
-```
 
-## 8. Show Serving API
+
+## 8. Serving API
 
 Start the API:
 
@@ -140,18 +137,14 @@ Open:
 http://127.0.0.1:8000/docs
 ```
 
-Show:
 
 ```text
 /health
 /transaction
 ```
 
-Say:
-
-```text
 The trained model is now available through an API.
-```
+
 
 ## 9. Send A Transaction
 
@@ -174,11 +167,9 @@ Example payload:
 }
 ```
 
-Say:
 
-```text
 The API publishes the transaction to MQTT. The app receives it, transforms it, predicts fraud risk, then stores the transaction and prediction.
-```
+
 
 ## 10. Show Prediction Storage
 
@@ -188,11 +179,9 @@ Optional command:
 sqlite3 data/transactions.db "SELECT transactionID, prediction, fraud_probability, risk_level, predicted_at FROM predictions ORDER BY predicted_at DESC LIMIT 5;"
 ```
 
-Say:
 
-```text
 This prediction table gives us audit history. We can see what the model decided and when.
-```
+
 
 ## 11. Show Grafana
 
@@ -213,11 +202,9 @@ latest predictions
 transaction volume by type
 ```
 
-Say:
 
-```text
 Grafana makes the system visible. It helps us understand what is happening after predictions are made.
-```
+
 
 ## 12. Show Monitoring
 
@@ -233,15 +220,13 @@ Open:
 reports/drift_report.html
 ```
 
-Say:
 
-```text
 Monitoring compares current transaction data with the original training data. This helps us know when the data starts changing.
-```
+
 
 ## 13. Show Orchestration
 
-Show:
+
 
 ```text
 src/orchestration/flows.py
@@ -253,15 +238,13 @@ Run:
 python3 -m src.orchestration.flows
 ```
 
-Say:
 
-```text
 Prefect lets us organize repeatable jobs like training and monitoring into one workflow.
-```
+
 
 ## 14. Show Docker And CI/CD
 
-Show:
+
 
 ```text
 Dockerfile
@@ -269,19 +252,15 @@ docker-compose.yml
 .github/workflows/ci.yml
 ```
 
-Say:
 
-```text
 Docker packages the project. Docker Compose runs the local services. GitHub Actions builds and publishes the image.
-```
+
 
 ## 15. Close The Demo
 
-Say:
 
-```text
 This is the end-to-end system. Now we will slow down and understand each part one by one.
-```
+
 
 ## Quick Troubleshooting
 
