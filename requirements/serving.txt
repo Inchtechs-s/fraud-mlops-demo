@@ -1,6 +1,10 @@
+pandas==2.3.3
+PyYAML
+paho-mqtt
 fastapi
 uvicorn
-mlflow
-pandas
-pydantic
 fastapi-mqtt
+pydantic
+mlflow==3.10.0
+scikit-learn
+xgboost

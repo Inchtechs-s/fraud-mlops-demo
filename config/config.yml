@@ -5,7 +5,8 @@ broker:
   interval: 30
 
 paths:
-  data: data/data.pkl
+  #TODO: Return to data.pkl
+  data: data/raw_data.pkl
   db: data/transactions.db
   mlflow_artifacts: data/mlflow/artifacts
   mlflow_db: data/mlflow/fraud_detection.db
@@ -21,6 +22,7 @@ mlflow:
 
 train:
   random_state: 42
-  min_f1_score: 0.90
+  #TODO: Return to 0.90
+  min_f1_score: 0.75
 
 

@@ -1,1 +1,8 @@
+pandas==2.3.3
+PyYAML
+mlflow
+scikit-learn
+xgboost
+matplotlib
+evidently
 prefect

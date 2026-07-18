@@ -25,6 +25,8 @@ services:
       - --backend-store-uri
       - sqlite:////mlflow/fraud_detection.db
       - --default-artifact-root
+      - mlflow-artifacts:/
+      - --artifacts-destination
       - /mlflow/artifacts
 
   grafana:

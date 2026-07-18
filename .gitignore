@@ -96,3 +96,7 @@ reports/
 
 *.db
 drift_report.html
+
+mynotes/
+
+raw_data.pkl
