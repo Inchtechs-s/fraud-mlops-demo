@@ -33,7 +33,7 @@ services:
     image: grafana/grafana-oss:latest
     container_name: fraud_grafana
     ports:
-      - "3123:3000"
+      - "3123:3000" #admin,1122311223
     environment:
       GF_INSTALL_PLUGINS: frser-sqlite-datasource
     volumes:

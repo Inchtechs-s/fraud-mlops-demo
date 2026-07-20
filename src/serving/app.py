@@ -120,8 +120,10 @@ async def message_to_topic(client, topic, payload, qos, properties):
     insert(app.state.conn_transactions, payload)
 
     match predicted_transaction_outcome["risk_level"]:
-        case "low" | "unknown":
-            print(f"[PREDICTION] Transaction {payload['transactionID']} is low risk or unknown.")
+        case "low" :
+            print(f"[PREDICTION] Transaction {payload['transactionID']} is low risk.")
+        case "unknown":
+            print(f"[PREDICTION] Transaction {payload['transactionID']} is unknown.")
    
         case "medium":
             print(f"[PREDICTION] Transaction {payload['transactionID']} is medium risk.")

@@ -171,7 +171,7 @@ Example payload:
 The API publishes the transaction to MQTT. The app receives it, transforms it, predicts fraud risk, then stores the transaction and prediction.
 
 
-## 10. Show Prediction Storage
+## 10. Prediction Storage
 
 Optional command:
 
@@ -183,7 +183,7 @@ sqlite3 data/transactions.db "SELECT transactionID, prediction, fraud_probabilit
 This prediction table gives us audit history. We can see what the model decided and when.
 
 
-## 11. Show Grafana
+## 11. Grafana
 
 Open:
 
@@ -242,7 +242,7 @@ python3 -m src.orchestration.flows
 Prefect lets us organize repeatable jobs like training and monitoring into one workflow.
 
 
-## 14. Show Docker And CI/CD
+## 14. Docker And CI/CD
 
 
 
@@ -256,10 +256,6 @@ docker-compose.yml
 Docker packages the project. Docker Compose runs the local services. GitHub Actions builds and publishes the image.
 
 
-## 15. Close The Demo
-
-
-This is the end-to-end system. Now we will slow down and understand each part one by one.
 
 
 ## Quick Troubleshooting
