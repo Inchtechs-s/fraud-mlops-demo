@@ -107,7 +107,12 @@ def tracking_experiment(run_name, registered_model_name, pipe, X_train, X_test, 
         print(classification_report(y_true=y_test, y_pred=y_test_pred, target_names=target_names))
         print("Metrics logged.")
 
-        mlflow.sklearn.log_model(pipe, artifact_path=registered_model_name)
+        mlflow.sklearn.log_model(pipe, artifact_path=registered_model_name,
+                                 #TODO: Return
+            skops_trusted_types=[
+                "xgboost.core.Booster",
+                "xgboost.sklearn.XGBClassifier",
+            ],)
         print("Model logged.")
 
         cm = confusion_matrix(y_true=y_test, y_pred=y_test_pred)

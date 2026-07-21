@@ -1,9 +1,10 @@
-pandas
+pandas==2.3.3
 PyYAML
 paho-mqtt
 fastapi
 uvicorn
 fastapi-mqtt
+pydantic
 mlflow
 scikit-learn
 xgboost
